@@ -2,6 +2,8 @@ $(document).ready(function(){
 
     //variables
 
+    var searchtype = "all";//artist, song, by lyrics
+
 
     
 
@@ -56,7 +58,7 @@ $(document).ready(function(){
 
     $("#home-button").on("click",function(){
 
-
+        //take me home to the place i belong west virginia
 
     });
 
@@ -75,6 +77,28 @@ $(document).ready(function(){
     $("#top-music").on("click",function(){
 
 
+
+    });
+
+
+    $("#artist-search").on("click",function(){
+
+        searchtype = "artist";
+        $("#search-type-display").text("Artist name");
+
+    });
+
+    $("#lyric-search").on("click",function(){
+
+        searchtype = "lyric";
+        $("#search-type-display").text("Lyrics");
+
+    });
+
+    $("#song-search").on("click",function(){
+
+        searchtype = "song";
+        $("#search-type-display").text("Song name");
 
     });
 

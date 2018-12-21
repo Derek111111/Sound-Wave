@@ -1,7 +1,9 @@
 $(document).ready(function(){
 
     //variables
+
     var searchtype = "all";//artist, song, by lyrics
+
 
     
 
@@ -99,4 +101,5 @@ $(document).ready(function(){
         $("#search-type-display").text("Song name");
 
     });
+
 });

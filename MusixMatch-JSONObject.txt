@@ -1,0 +1,53 @@
+SoundCloud:{"message":{"header":{"status_code":200,"execute_time":0.013057947158813,"available":1112},
+
+
+"body":{"track_list":[{"track":{"track_id":51272622,"track_name":"Diana","track_name_translation_list":[],
+"track_rating":1,"commontrack_id":24072629,"instrumental":0,"explicit":0,"has_lyrics":0,"has_subtitles":0,
+"has_richsync":0,"num_favourite":0,"album_id":16875883,"album_name":"The Complete First Season",
+"artist_id":26306647,"artist_name":"Jeremiah feat. Micheal Jackson",
+"track_share_url":"https://www.musixmatch.com/lyrics/Jeremiah-feat-Micheal-Jackson/Diana?utm_source=application&utm_campaign=api&utm_medium=",
+"track_edit_url":"https://www.musixmatch.com/lyrics/Jeremiah-feat-Micheal-Jackson/Diana/edit?utm_source=application&utm_campaign=api&utm_medium=",
+"restricted":0,"updated_time":"2014-01-26T13:15:55Z","primary_genres":{"music_genre_list":[]}}},
+
+
+
+
+{"track":{"track_id":74206523,
+"track_name":"I Was Made to Love Her","track_name_translation_list":[],"track_rating":4,"commontrack_id":106483,"instrumental":0,
+"explicit":0,"has_lyrics":1,"has_subtitles":0,"has_richsync":0,"num_favourite":4,"album_id":19706873,"album_name":"The Motown Years...His Greatest Hits",
+"artist_id":295,"artist_name":"Michael Jackson",
+"track_share_url":"https://www.musixmatch.com/lyrics/Michael-Jackson/I-Was-Made-to-Love-Her?utm_source=application&utm_campaign=api&utm_medium=",
+"track_edit_url":"https://www.musixmatch.com/lyrics/Michael-Jackson/I-Was-Made-to-Love-Her/edit?utm_source=application&utm_campaign=api&utm_medium=",
+"restricted":0,"updated_time":"2011-06-10T15:18:39Z","primary_genres":{"music_genre_list":[]}}},
+
+
+{"track":{"track_id":32895214,"track_name":"Season's Greetings from Michael Jackson","track_name_translation_list":[],"track_rating":45,"commontrack_id":106664,
+"instrumental":1,"explicit":0,"has_lyrics":0,"has_subtitles":0,"has_richsync":0,"num_favourite":0,
+"album_id":15411801,"album_name":"Ultimate Christmas Collection","artist_id":295,"artist_name":"Michael Jackson",
+"track_share_url":"https://www.musixmatch.com/lyrics/Michael-Jackson/Season-s-Greetings-From-Michael-Jackson?utm_source=application&utm_campaign=api&utm_medium=",
+"track_edit_url":"https://www.musixmatch.com/lyrics/Michael-Jackson/Season-s-Greetings-From-Michael-Jackson/edit?utm_source=application&utm_campaign=api&utm_medium=",
+"restricted":0,"updated_time":"2015-10-11T13:51:00Z","primary_genres":{"music_genre_list":[]}}},
+
+
+{"track":{"track_id":16878462,"track_name":"You're Good for Me","track_name_translation_list":[],"track_rating":55,"commontrack_id":106873,
+"instrumental":0,"explicit":0,"has_lyrics":1,"has_subtitles":1,"has_richsync":0,"num_favourite":2,
+"album_id":10976252,"album_name":"Hello World: The Motown Solo Collection","artist_id":295,"artist_name":"Michael Jackson",
+"track_share_url":"https://www.musixmatch.com/lyrics/Michael-Jackson/You-re-Good-for-Me?utm_source=application&utm_campaign=api&utm_medium=",
+"track_edit_url":"https://www.musixmatch.com/lyrics/Michael-Jackson/You-re-Good-for-Me/edit?utm_source=application&utm_campaign=api&utm_medium=",
+"restricted":0,"updated_time":"2011-12-06T23:00:12Z","primary_genres":{"music_genre_list":[]}}},{"track":{"track_id":74206518,
+"track_name":"Lookin' Through the Windows","track_name_translation_list":[],"track_rating":55,"commontrack_id":40751994,
+"instrumental":0,"explicit":0,"has_lyrics":1,"has_subtitles":1,"has_richsync":0,"num_favourite":1,
+"album_id":19706873,"album_name":"The Motown Years...His Greatest Hits","artist_id":295,"artist_name":"Michael Jackson",
+"track_share_url":"https://www.musixmatch.com/lyrics/Michael-Jackson/Lookin-Through-The-Windows?utm_source=application&utm_campaign=api&utm_medium=",
+"track_edit_url":"https://www.musixmatch.com/lyrics/Michael-Jackson/Lookin-Through-The-Windows/edit?utm_source=application&utm_campaign=api&utm_medium=",
+"restricted":0,"updated_time":"2016-12-23T07:27:23Z","primary_genres":{"music_genre_list":[]}}},{"track":{"track_id":16878465,
+"track_name":"Who's Lookin' for a Lover","track_name_translation_list":[],"track_rating":7,"commontrack_id":106822,
+"instrumental":0,"explicit":0,"has_lyrics":1,"has_subtitles":0,"has_richsync":0,"num_favourite":3,
+"album_id":10976252,"album_name":"Hello World: The Motown Solo Collection",
+"artist_id":295,"artist_name":"Michael Jackson",
+"track_share_url":"https://www.musixmatch.com/lyrics/Michael-Jackson/Who-s-Lookin-for-a-Lover?utm_source=application&utm_campaign=api&utm_medium=",
+"track_edit_url":"https://www.musixmatch.com/lyrics/Michael-Jackson/Who-s-Lookin-for-a-Lover/edit?utm_source=application&utm_campaign=api&utm_medium=","restricted":0,"updated_time":"2011-06-10T15:18:48Z","primary_genres":{"music_genre_list":[]}}},{"track":{"track_id":19808866,"track_name":"Vincent Price Voice-Over Session","track_name_translation_list":[],"track_rating":46,"commontrack_id":12084031,"instrumental":1,"explicit":0,"has_lyrics":0,"has_subtitles":0,"has_richsync":0,"num_favourite":4,"album_id":14327357,"album_name":"Thriller","artist_id":295,"artist_name":"Michael Jackson","track_share_url":"https://www.musixmatch.com/lyrics/Michael-Jackson/Vincent-Price-Voice-Over-Session?utm_source=application&utm_campaign=api&utm_medium=","track_edit_url":"https://www.musixmatch.com/lyrics/Michael-Jackson/Vincent-Price-Voice-Over-Session/edit?utm_source=application&utm_campaign=api&utm_medium=","restricted":0,"updated_time":"2014-05-02T05:36:35Z","primary_genres":{"music_genre_list":[]}}},{"track":{"track_id":1638074,"track_name":"All the Things You Are, Are Mine","track_name_translation_list":[],"track_rating":55,"commontrack_id":106232,"instrumental":0,"explicit":0,"has_lyrics":1,"has_subtitles":1,"has_richsync":0,"num_favourite":2,"album_id":10353385,"album_name":"Music and Me","artist_id":295,"artist_name":"Michael Jackson","track_share_url":"https://www.musixmatch.com/lyrics/Michael-Jackson/All-the-Things-You-Are-Are-Mine?utm_source=application&utm_campaign=api&utm_medium=","track_edit_url":"https://www.musixmatch.com/lyrics/Michael-Jackson/All-the-Things-You-Are-Are-Mine/edit?utm_source=application&utm_campaign=api&utm_medium=","restricted":0,"updated_time":"2013-04-26T12:04:05Z","primary_genres":{"music_genre_list":[]}}},{"track":{"track_id":3410152,"track_name":"Love Mix 2","track_name_translation_list":[],"track_rating":55,"commontrack_id":106537,"instrumental":0,"explicit":0,"has_lyrics":1,"has_subtitles":1,"has_richsync":0,"num_favourite":3,"album_id":10498631,"album_name":"The Michael Jackson Mix","artist_id":295,"artist_name":"Michael Jackson","track_share_url":"https://www.musixmatch.com/lyrics/Michael-Jackson/Love-Mix-2?utm_source=application&utm_campaign=api&utm_medium=","track_edit_url":"https://www.musixmatch.com/lyrics/Michael-Jackson/Love-Mix-2/edit?utm_source=application&utm_campaign=api&utm_medium=","restricted":0,"updated_time":"2014-04-08T09:56:58Z","primary_genres":{"music_genre_list":[]}}},{"track":{"track_id":12233163,"track_name":"The Remix Section","track_name_translation_list":[],"track_rating":45,"commontrack_id":8880393,
+"instrumental":0,"explicit":0,"has_lyrics":0,"has_subtitles":0,"has_richsync":0,"num_favourite":0,"album_id":12245207,"album_name":"Remind: The Remix",
+"artist_id":295,"artist_name":"Michael Jackson","track_share_url":"https://www.musixmatch.com/lyrics/Michael-Jackson/The-Remix-Section?utm_source=application&utm_campaign=api&utm_medium=",
+"track_edit_url":"https://www.musixmatch.com/lyrics/Michael-Jackson/The-Remix-Section/edit?utm_source=application&utm_campaign=api&utm_medium=","restricted":0,"updated_time":"2011-06-12T23:27:26Z",
+"primary_genres":{"music_genre_list":[]}}}]}}}

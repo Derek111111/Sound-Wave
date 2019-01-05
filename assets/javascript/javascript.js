@@ -58,10 +58,64 @@ $(document).ready(function(){
             method: "GET"
         }).done(function(data1){
 
-            retrievedData = JSON.stringify(data1);
-            console.log("Musixmatch:" +retrievedData);          
-            console.log(retrievedData.message.body.track_list[0].track.track_share_url);
+            retrievedData = data1;
+            console.log("Musixmatch:" +retrievedData);      
+            var trackId=retrievedData.message.body.track_list[0].track.track_id;    
+            console.log(trackId);
             //window.location.href=retrievedData.message.body.track_list[0].track.track_share_url;
+
+            if(retrievedData.message.body.track_list[0].track.has_lyrics===1)
+            {
+                queryURL="https://api.musixmatch.com/ws/1.1/track.lyrics.get";
+                $.ajax({
+            
+                    data: {
+                        apikey:"210a12390dca7dd6948cd30a4cd5eda2",
+                        track_id: trackId,
+                        format:"jsonp",
+                        callback:"jsonp_callback"
+                    },
+                    dataType: "jsonp",
+                    jsonpCallback: 'jsonp_callback',
+                    contentType: 'application/json',
+                    url: queryURL,
+                    method: "GET"
+                }).done(function(data){
+        
+                    var stringData = JSON.stringify(data);
+                    //console.log(stringData);
+                    //console.log("Musixmatch:" +JSON.parse(stringData));  
+                    //console.log(data.message.body.lyrics.lyrics_body) ;
+                    //$("#recent").html(data.message.body.lyrics.lyrics_body)
+                    $("#lyrics-holder").empty();
+                    var lyrics = data.message.body.lyrics.lyrics_body;
+                    var indexOfAsterix = lyrics.indexOf("*");
+                    var strLength = lyrics.length;
+                    var cutLyrics = lyrics.substring(0,indexOfAsterix - 1);
+                    //$("#lyrics-holder").text(cutLyrics);
+                    var currentLine = "";
+                    for(var i = 0; i <= strLength ; i++){
+
+                        var checkPart = lyrics.substring(i,i+1);
+                        //console.log("checkPart: " + checkPart);
+                        if(checkPart === "\n"){
+                            console.log("success");
+                            console.log("Current Line Finished: " + currentLine);
+                            var lyricDiv = $("<p>");
+                            lyricDiv.text(currentLine);
+                            $("#lyrics-holder").append(lyricDiv);
+                            currentLine = "";
+                            $("#recentJumbo").css("display","none");
+                            $("#trendingJumbo").css("display","none");
+                        }else{
+                            currentLine = currentLine + checkPart;
+                        }
+                        
+
+                    }
+                
+            })
+        }
 
         }).fail(function(error){
 
@@ -70,6 +124,7 @@ $(document).ready(function(){
         });
 
         return retrievedData;
+        
 
     }
 

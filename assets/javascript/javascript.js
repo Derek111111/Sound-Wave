@@ -61,7 +61,9 @@ $(document).ready(function(){
             retrievedData = data1;
             console.log("Musixmatch:" +retrievedData);      
             var trackId=retrievedData.message.body.track_list[0].track.track_id;    
-            console.log(trackId);
+            console.log(data1.message.body.track_list[0].track.track_name);
+            var track_name=data1.message.body.track_list[0].track.track_name;
+            //$("#lyrics-tilte").text(data1.message.body.track_list[0].track.track_name);
             //window.location.href=retrievedData.message.body.track_list[0].track.track_share_url;
 
             if(retrievedData.message.body.track_list[0].track.has_lyrics===1)
@@ -83,31 +85,34 @@ $(document).ready(function(){
                 }).done(function(data){
         
                     var stringData = JSON.stringify(data);
-                    //console.log(stringData);
-                    //console.log("Musixmatch:" +JSON.parse(stringData));  
-                    //console.log(data.message.body.lyrics.lyrics_body) ;
-                    //$("#recent").html(data.message.body.lyrics.lyrics_body)
+                    
                     $("#lyrics-holder").empty();
                     var lyrics = data.message.body.lyrics.lyrics_body;
                     var indexOfAsterix = lyrics.indexOf("*");
                     var strLength = lyrics.length;
                     var cutLyrics = lyrics.substring(0,indexOfAsterix - 1);
-                    //$("#lyrics-holder").text(cutLyrics);
+                    $("#lyrics-holder").append("<strong>"+track_name+"</strong><br><br>");
+                    
                     var currentLine = "";
                     for(var i = 0; i <= strLength ; i++){
 
-                        var checkPart = lyrics.substring(i,i+1);
-                        //console.log("checkPart: " + checkPart);
+                        var checkPart = cutLyrics.substring(i,i+1);
+                        
                         if(checkPart === "\n"){
-                            console.log("success");
-                            console.log("Current Line Finished: " + currentLine);
+                            
                             var lyricDiv = $("<p>");
                             lyricDiv.text(currentLine);
                             $("#lyrics-holder").append(lyricDiv);
                             currentLine = "";
                             $("#recentJumbo").css("display","none");
                             $("#trendingJumbo").css("display","none");
-                        }else{
+                            $("#lyrics-holder").css("text-align","center");
+                            $("#lyrics-holder").css("font-size","18px");
+                            //$("#lyrics-holder").css("font-weight","bold");
+
+                        }
+                        else
+                        {
                             currentLine = currentLine + checkPart;
                         }
                         
@@ -128,44 +133,69 @@ $(document).ready(function(){
 
     }
 
-    function Music()
+    function playlistSearch()
     {
         var retrieveddata;
-        console.log("for Spotify");
+        
         $.ajax({
            
             type : 'POST',
             url : 'http://ws.audioscrobbler.com/2.0/',
-            data : 'method=artist.getinfo&' +
+            data : 'method=artist.gettoptracks&' +
                'artist='+artistSearch+'&' +
                'api_key=526e845a2fb646935dce28bbef50eaaf&' +
                'format=json',
-        
+               
         }).done(function(data1){
 
-            retrieveddata = data1;
+            retrieveddata = JSON.stringify(data1);
             console.log("Lastfm:" +retrieveddata);    
-            window.location.href=retrieveddata.artist.url;
-            console.log(retrieveddata.artist.image[2]);
-            //$("#image1").attr('src',retrieveddata.artist.image[2]['#text'] );
+            //window.location.href=retrieveddata.artist.url;
+            $("#lyrics-holder").empty();
+            $("#recentJumbo").css("display","none");
+            $("#trendingJumbo").css("display","none");
+            $("#lyrics-holder").css("text-align","center");
+            var image=$("<img>");
+            image.attr("src",data1.toptracks.track[0].image[2]['#text']);
+            $("#lyrics-holder").append(image);
+            for(var j=0;j<10;j++)
+            {
+                var html = '';
+                html += "<p><a href=" + data1.toptracks.track[j].url + " target='_blank'>" +data1.toptracks.track[j].url+ "</a></p>";
+                $("#lyrics-holder").append(html);
+            }
+           
     });
-    }
+
+   /* $.getJSON("http://ws.audioscrobbler.com/2.0/?method=user.getTopArtists&user=test&api_key=526e845a2fb646935dce28bbef50eaaf&limit=10&format=json&callback=?", function(json) {
+        var html = '';
+        $.each(json.topartists.artist, function(i, item) {
+            html += "<p><a href=" + item.url + " target='_blank'>" + item.name + " - " + "Play count : " +item.playcount + "</a></p>";
+        });
+        $("#lyrics-holder").empty();
+        $("#recentJumbo").css("display","none");
+        $("#trendingJumbo").css("display","none");
+        $('#lyrics-holder').append(html);*/
+    
+}
 
     function lastFMcall()
     {
         //$.getJSON('http://ws.audioscrobbler.com/2.0/?method=user.getTopArtists&period=3month&user=samosfator&api_key=526e845a2fb646935dce28bbef50eaaf&format=json', 
-        $.getJSON('http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&period=3month&api_key=526e845a2fb646935dce28bbef50eaaf&format=json', 
+        $.getJSON('http://ws.audioscrobbler.com/2.0/?method=chart.getTopTracks&period=3month&api_key=526e845a2fb646935dce28bbef50eaaf&format=json', 
         function(response) {result = response}).done(function (result) 
         {
            
             console.log(result)
             for (var i=0;i<5;i++)
         {
-            console.log(result.artists.artist[i].image[2]['#text']);
-            var j=Math.floor((Math.random() * 50) + 1);          
-            $("#image"+i).attr("src",result.artists.artist[j].image[2]['#text']);
-            $("#link"+i).attr("href",result.artists.artist[j].url);
-            $("#link"+i).text(result.artists.artist[j].name);
+            
+            var j=Math.floor((Math.random() * 50) + 1);     
+            console.log(result.tracks.track[j].name);     
+            $("#image"+i).attr("src",result.tracks.track[j].image[2]['#text']);
+            $("#link"+i).attr("href",result.tracks.track[j].url);
+            $("#link"+i).attr("target",'_blank');
+            $("#link"+i).text(result.tracks.track[j].name);
         }
         })
         
@@ -223,7 +253,7 @@ $(document).ready(function(){
         console.log(queryURL);
         console.log("Testing");
         ajaxCall(queryURL);
-        //Music();
+        //playlistSearch();
     });
 
     $("#Playlist-search").on("click",function(){
@@ -234,9 +264,7 @@ $(document).ready(function(){
         queryURL="https://api.musixmatch.com/ws/1.1/track.search";
         $("#search-type-display").text("Artist name");
         
-        console.log("Testing");
-        
-        Music();
+        playlistSearch();
         //lastFMcall();
     });
 

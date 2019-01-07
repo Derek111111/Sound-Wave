@@ -8,6 +8,19 @@ $(document).ready(function(){
 
     var queryURL;
    
+     // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB2W8UwsJNT6Z8q_XZOUpUHplupb8KlZjE",
+    authDomain: "minalfirst.firebaseapp.com",
+    databaseURL: "https://minalfirst.firebaseio.com",
+    projectId: "minalfirst",
+    storageBucket: "minalfirst.appspot.com",
+    messagingSenderId: "786089528355"
+  };
+  
+    firebase.initializeApp(config);
+
+    var database = firebase.database();
    
     //functions
     function createMusicSquare(){
@@ -33,6 +46,7 @@ $(document).ready(function(){
     }
 
     lastFMcall();
+    recentPlaylist();
     function createArtistRow(){
 
 
@@ -160,8 +174,13 @@ $(document).ready(function(){
             $("#lyrics-holder").append(image);
             for(var j=0;j<10;j++)
             {
-                var html = '';
-                html += "<p><a href=" + data1.toptracks.track[j].url + " target='_blank'>" +data1.toptracks.track[j].url+ "</a></p>";
+                var html =$("<a>");
+                html.attr("href",data1.toptracks.track[j].url);
+                html.text(JSON.stringify(data1.toptracks.track[j].url));
+                html.attr("target",'_blank');
+                html.addClass("link");
+                //html += "<p><a href=" + data1.toptracks.track[j].url + "class='link' target='_blank'>" +data1.toptracks.track[j].url+ "</a></p>";
+                $("#lyrics-holder").append("<br><br>");
                 $("#lyrics-holder").append(html);
             }
            
@@ -186,12 +205,12 @@ $(document).ready(function(){
         function(response) {result = response}).done(function (result) 
         {
            
-            console.log(result)
-            for (var i=0;i<5;i++)
+            //console.log(result)
+            for (var i=1;i<=5;i++)
         {
             
             var j=Math.floor((Math.random() * 50) + 1);     
-            console.log(result.tracks.track[j].name);     
+            //console.log(result.tracks.track[j].name);     
             $("#image"+i).attr("src",result.tracks.track[j].image[2]['#text']);
             $("#link"+i).attr("href",result.tracks.track[j].url);
             $("#link"+i).attr("target",'_blank');
@@ -200,6 +219,31 @@ $(document).ready(function(){
         })
         
     }
+
+   function recentPlaylist()
+   {
+       var i=0;
+    database.ref("SoundWave").on("child_added", function(snapshot) {
+        console.log(snapshot.val());
+        i++;
+        link= snapshot.val().link;
+        
+            $("#lnk"+i).text(link);
+        
+    });
+   }
+
+    $(document).on("click",".link",function() {
+        console.log(this.href);
+        console.log("Database1");
+        database.ref("SoundWave").push({
+            
+            
+            link:this.href
+          });
+        
+    });
+   
 
     $("#arrowright").on("click",function()
     {

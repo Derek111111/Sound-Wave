@@ -218,7 +218,7 @@ $(document).ready(function(){
         {
            
             //console.log(result.tracks);
-            for (var i=1;i<5;i++)
+            for (var i=0;i<5;i++)
         {
             
             var j=Math.floor((Math.random() * 50) + 1);     
@@ -236,7 +236,7 @@ $(document).ready(function(){
 
    function recentPlaylist()
    {
-    database.ref("SoundWave/Recent").on("child_changed", function(snapshot) {
+        database.ref("SoundWave/Recent/One").on("child_added", function(snapshot) {
         console.log("Recent Changed");
         console.log("Snapshot"+snapshot.val().artistName);
         link= snapshot.val().link;
@@ -253,14 +253,98 @@ $(document).ready(function(){
                
                   
                //console.log(result);     
-               $("#img"+k).attr("src",result.track.album.image[2]['#text']);
-               $("#lnk"+k).attr("href",result.track.album.url);
-               $("#lnk"+k).attr("target",'_blank');
-               $("#lnk"+k).text(result.track.album.title);
-               $("#lnk"+k).attr("artist-name",result.track.album.artist);
+               $("#img1").attr("src",result.track.album.image[2]['#text']);
+               $("#lnk1").attr("href",result.track.album.url);
+               $("#lnk1").attr("target",'_blank');
+               $("#lnk1").text(result.track.album.title);
+               $("#lnk1").attr("artist-name",result.track.album.artist);
            //}
            })
-           k++;
+           
+
+    });
+
+    database.ref("SoundWave/Recent/Two").on("child_added", function(snapshot) {
+        console.log("Recent Changed");
+        console.log("Snapshot"+snapshot.val().artistName);
+        link= snapshot.val().link;
+        
+           // $("#lnk"+i).text(link);
+
+           $.getJSON('http://ws.audioscrobbler.com/2.0/?method=track.getInfo&artist='+snapshot.val().artistName+'&track='+snapshot.val().trackName+'&api_key=526e845a2fb646935dce28bbef50eaaf&format=json', 
+           function(response) {result = response}).done(function (result) 
+           {
+            
+               //console.log(result.tracks.track[0].artist.name);
+               //for (var i=1;i<=5;i++)
+           //{
+               
+                  
+               console.log(result);     
+               $("#img2").attr("src",result.track.album.image[2]['#text']);
+               $("#lnk2").attr("href",result.track.album.url);
+               $("#lnk2").attr("target",'_blank');
+               $("#lnk2").text(result.track.album.title);
+               $("#lnk2").attr("artist-name",result.track.album.artist);
+           //}
+           })
+           
+
+    });
+
+    database.ref("SoundWave/Recent/Three").on("child_added", function(snapshot) {
+        console.log("Recent Changed");
+        console.log("Snapshot"+snapshot.val().artistName);
+        link= snapshot.val().link;
+        
+           // $("#lnk"+i).text(link);
+
+           $.getJSON('http://ws.audioscrobbler.com/2.0/?method=track.getInfo&artist='+snapshot.val().artistName+'&track='+snapshot.val().trackName+'&api_key=526e845a2fb646935dce28bbef50eaaf&format=json', 
+           function(response) {result = response}).done(function (result) 
+           {
+            
+               //console.log(result.tracks.track[0].artist.name);
+               //for (var i=1;i<=5;i++)
+           //{
+               
+                  
+               //console.log(result);     
+               $("#img3").attr("src",result.track.album.image[2]['#text']);
+               $("#lnk3").attr("href",result.track.album.url);
+               $("#lnk3").attr("target",'_blank');
+               $("#lnk3").text(result.track.album.title);
+               $("#lnk3").attr("artist-name",result.track.album.artist);
+           //}
+           })
+           
+
+    });
+
+    database.ref("SoundWave/Recent/Four").on("child_added", function(snapshot) {
+        console.log("Recent Changed");
+        console.log("Snapshot"+snapshot.val().artistName);
+        link= snapshot.val().link;
+        
+           // $("#lnk"+i).text(link);
+
+           $.getJSON('http://ws.audioscrobbler.com/2.0/?method=track.getInfo&artist='+snapshot.val().artistName+'&track='+snapshot.val().trackName+'&api_key=526e845a2fb646935dce28bbef50eaaf&format=json', 
+           function(response) {result = response}).done(function (result) 
+           {
+            
+               //console.log(result.tracks.track[0].artist.name);
+               //for (var i=1;i<=5;i++)
+           //{
+               
+                  
+               //console.log(result);     
+               $("#img4").attr("src",result.track.album.image[2]['#text']);
+               $("#lnk4").attr("href",result.track.album.url);
+               $("#lnk4").attr("target",'_blank');
+               $("#lnk4").text(result.track.album.title);
+               $("#lnk4").attr("artist-name",result.track.album.artist);
+           //}
+           })
+           
 
     });
    }

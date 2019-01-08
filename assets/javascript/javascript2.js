@@ -122,7 +122,6 @@ $(document).ready(function(){
                             currentLine = "";
                             $("#recentJumbo").css("display","none");
                             $("#trendingJumbo").css("display","none");
-                            $("#music-player").css("display","none");
                             $("#lyrics-holder").css("text-align","center");
                             $("#lyrics-holder").css("font-size","18px");
 
@@ -167,7 +166,6 @@ $(document).ready(function(){
             retrieveddata = JSON.stringify(data1);
             //console.log("Lastfm:" +retrieveddata);    
             $("#lyrics-holder").empty();
-            //$("#music-player").css("display","none");
             $("#recentJumbo").css("display","none");
             $("#trendingJumbo").css("display","none");
             $("#lyrics-holder").css("text-align","center");
@@ -180,7 +178,7 @@ $(document).ready(function(){
                 var html =$("<a>");
                 html.attr("href",data1.toptracks.track[j].url);
                 html.text(JSON.stringify(data1.toptracks.track[j].url));
-                html.attr("target",'song');
+                html.attr("target",'_blank');
                 html.addClass("link");
                 //console.log(data1.toptracks.track[j].artist.name);
                 html.attr("track-name",data1.toptracks.track[j].name);
@@ -231,7 +229,7 @@ $(document).ready(function(){
            { 
                $("#img1").attr("src",result.track.album.image[2]['#text']);
                $("#lnk1").attr("href",result.track.album.url);
-               $("#lnk1").attr("target",'song');
+               $("#lnk1").attr("target",'_blank');
                $("#lnk1").text(result.track.album.title);
                $("#lnk1").attr("artist-name",result.track.album.artist);
            })
@@ -246,7 +244,7 @@ $(document).ready(function(){
            {  
                $("#img2").attr("src",result.track.album.image[2]['#text']);
                $("#lnk2").attr("href",result.track.album.url);
-               $("#lnk2").attr("target",'song');
+               $("#lnk2").attr("target",'_blank');
                $("#lnk2").text(result.track.album.title);
                $("#lnk2").attr("artist-name",result.track.album.artist);
            })
@@ -261,7 +259,7 @@ $(document).ready(function(){
            {
                $("#img3").attr("src",result.track.album.image[2]['#text']);
                $("#lnk3").attr("href",result.track.album.url);
-               $("#lnk3").attr("target",'song');
+               $("#lnk3").attr("target",'_blank');
                $("#lnk3").text(result.track.album.title);
                $("#lnk3").attr("artist-name",result.track.album.artist);
            })
@@ -276,7 +274,7 @@ $(document).ready(function(){
            {   
                $("#img4").attr("src",result.track.album.image[2]['#text']);
                $("#lnk4").attr("href",result.track.album.url);
-               $("#lnk4").attr("target",'song');
+               $("#lnk4").attr("target",'_blank');
                $("#lnk4").text(result.track.album.title);
                $("#lnk4").attr("artist-name",result.track.album.artist);
            })

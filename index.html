@@ -19,6 +19,7 @@
     <!-- JavaScript -->
     <script src="assets/javascript/javascript.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 </head>
 <body>
     <div class="wrapper" id="mainPage">
@@ -41,7 +42,10 @@
             </nav>
       </div>
     </div>
-
+    <div class="container" id="music-player">
+        <iframe name="song" src="https://www.last.fm/music/embed/" width=1100px height=200px frameborder=0></iframe>
+        
+    </div>
     <div class="container">       <!-- Recent Searches -->
         <div class="jumbotron" id = "recentJumbo">
                 <h2>Recent</h2>

@@ -3,24 +3,22 @@ $(document).ready(function(){
     //variables
 
     var searchtype = "all";//artist, song, by lyrics
-
     var artistSearch;
-
     var queryURL;
 
-    //database Var
+    //database Variables
     var k=0;
     var records=0;
    
-     // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyB2W8UwsJNT6Z8q_XZOUpUHplupb8KlZjE",
-    authDomain: "minalfirst.firebaseapp.com",
-    databaseURL: "https://minalfirst.firebaseio.com",
-    projectId: "minalfirst",
-    storageBucket: "minalfirst.appspot.com",
-    messagingSenderId: "786089528355"
-  };
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyB2W8UwsJNT6Z8q_XZOUpUHplupb8KlZjE",
+        authDomain: "minalfirst.firebaseapp.com",
+        databaseURL: "https://minalfirst.firebaseio.com",
+        projectId: "minalfirst",
+        storageBucket: "minalfirst.appspot.com",
+        messagingSenderId: "786089528355"
+    };
   
     firebase.initializeApp(config);
 
@@ -54,15 +52,10 @@ $(document).ready(function(){
 
     }
 
-    lastFMcall();
+    trendingList();
     recentPlaylist();
-    function createArtistRow(){
-
-
-
-    }
-
-
+    
+    //MusixMatch Ajax Call
     function ajaxCall(queryURL){
 
         var retrievedData;
@@ -82,13 +75,12 @@ $(document).ready(function(){
         }).done(function(data1){
 
             retrievedData = data1;
-            console.log("Musixmatch:" +retrievedData);      
+            //console.log("Musixmatch:" +retrievedData);      
             var trackId=retrievedData.message.body.track_list[0].track.track_id;    
-            console.log(data1.message.body.track_list[0].track.track_name);
+            //console.log(data1.message.body.track_list[0].track.track_name);
             var track_name=data1.message.body.track_list[0].track.track_name;
-            //$("#lyrics-tilte").text(data1.message.body.track_list[0].track.track_name);
-            //window.location.href=retrievedData.message.body.track_list[0].track.track_share_url;
-
+            
+            //another MusixMatch Ajax Call to get the lyrics based on trackId
             if(retrievedData.message.body.track_list[0].track.has_lyrics===1)
             {
                 queryURL="https://api.musixmatch.com/ws/1.1/track.lyrics.get";
@@ -116,6 +108,7 @@ $(document).ready(function(){
                     var cutLyrics = lyrics.substring(0,indexOfAsterix - 1);
                     $("#lyrics-holder").append("<strong>"+track_name+"</strong><br><br>");
                     
+                    //String manipulations to print lyrics line by line
                     var currentLine = "";
                     for(var i = 0; i <= strLength ; i++){
 
@@ -131,7 +124,6 @@ $(document).ready(function(){
                             $("#trendingJumbo").css("display","none");
                             $("#lyrics-holder").css("text-align","center");
                             $("#lyrics-holder").css("font-size","18px");
-                            //$("#lyrics-holder").css("font-weight","bold");
 
                         }
                         else
@@ -139,7 +131,6 @@ $(document).ready(function(){
                             currentLine = currentLine + checkPart;
                         }
                         
-
                     }
                 
             })
@@ -153,13 +144,14 @@ $(document).ready(function(){
 
         return retrievedData;
         
-
     }
 
+    //Function to display top 10 tracks of Artist name entered 
     function playlistSearch()
     {
         var retrieveddata;
         
+        //Ajax Call to last.fm
         $.ajax({
            
             type : 'POST',
@@ -172,12 +164,12 @@ $(document).ready(function(){
         }).done(function(data1){
 
             retrieveddata = JSON.stringify(data1);
-            console.log("Lastfm:" +retrieveddata);    
-            //window.location.href=retrieveddata.artist.url;
+            //console.log("Lastfm:" +retrieveddata);    
             $("#lyrics-holder").empty();
             $("#recentJumbo").css("display","none");
             $("#trendingJumbo").css("display","none");
             $("#lyrics-holder").css("text-align","center");
+            //display image of an artist
             var image=$("<img>");
             image.attr("src",data1.toptracks.track[0].image[2]['#text']);
             $("#lyrics-holder").append(image);
@@ -188,173 +180,113 @@ $(document).ready(function(){
                 html.text(JSON.stringify(data1.toptracks.track[j].url));
                 html.attr("target",'_blank');
                 html.addClass("link");
-                console.log(data1.toptracks.track[j].artist.name);
+                //console.log(data1.toptracks.track[j].artist.name);
                 html.attr("track-name",data1.toptracks.track[j].name);
                 html.attr("artist-name",data1.toptracks.track[j].artist.name);
-                //html += "<p><a href=" + data1.toptracks.track[j].url + "class='link' target='_blank'>" +data1.toptracks.track[j].url+ "</a></p>";
                 $("#lyrics-holder").append("<br><br>");
                 $("#lyrics-holder").append(html);
             }
            
     });
 
-   /* $.getJSON("http://ws.audioscrobbler.com/2.0/?method=user.getTopArtists&user=test&api_key=526e845a2fb646935dce28bbef50eaaf&limit=10&format=json&callback=?", function(json) {
-        var html = '';
-        $.each(json.topartists.artist, function(i, item) {
-            html += "<p><a href=" + item.url + " target='_blank'>" + item.name + " - " + "Play count : " +item.playcount + "</a></p>";
-        });
-        $("#lyrics-holder").empty();
-        $("#recentJumbo").css("display","none");
-        $("#trendingJumbo").css("display","none");
-        $('#lyrics-holder').append(html);*/
-    
-}
+    }
 
-    function lastFMcall()
+   //function to display trending tracks in Trending section
+    function trendingList()
     {
-        //$.getJSON('http://ws.audioscrobbler.com/2.0/?method=user.getTopArtists&period=3month&user=samosfator&api_key=526e845a2fb646935dce28bbef50eaaf&format=json', 
+        
         $.getJSON('http://ws.audioscrobbler.com/2.0/?method=chart.getTopTracks&period=3month&api_key=526e845a2fb646935dce28bbef50eaaf&format=json', 
         function(response) {result = response}).done(function (result) 
         {
            
             //console.log(result.tracks);
+            //display 4 trending tracks at a time
             for (var i=0;i<5;i++)
-        {
-            
-            var j=Math.floor((Math.random() * 50) + 1);     
-            //console.log(result.tracks.track[j].name);     
-            $("#image"+i).attr("src",result.tracks.track[j].image[2]['#text']);
-            $("#link"+i).attr("href",result.tracks.track[j].url);
-            $("#link"+i).attr("target",'_blank');
-            $("#link"+i).text(result.tracks.track[j].name);
-            $("#link"+i).attr("track-name",result.tracks.track[j].name);
-            $("#link"+i).attr("artist-name",result.tracks.track[j].artist.name);
-        }
+            {
+                //pick any random track among  top 50 tracks from last.fm
+                var j=Math.floor((Math.random() * 50) + 1);     
+                //console.log(result.tracks.track[j].name);     
+                $("#image"+i).attr("src",result.tracks.track[j].image[2]['#text']);
+                $("#link"+i).attr("href",result.tracks.track[j].url);
+                $("#link"+i).attr("target",'_blank');
+                $("#link"+i).text(result.tracks.track[j].name);
+                $("#link"+i).attr("track-name",result.tracks.track[j].name);
+                $("#link"+i).attr("artist-name",result.tracks.track[j].artist.name);
+            }
         })
         
     }
 
+   //function to display recently played tracks in Recent section
    function recentPlaylist()
    {
-        database.ref("SoundWave/Recent/One").on("child_added", function(snapshot) {
-        console.log("Recent Changed");
-        console.log("Snapshot"+snapshot.val().artistName);
-        link= snapshot.val().link;
         
-           // $("#lnk"+i).text(link);
-
+        //retrieve and display first recent track from firebase
+        database.ref("SoundWave/Recent/One").on("child_added", function(snapshot) {
+        
            $.getJSON('http://ws.audioscrobbler.com/2.0/?method=track.getInfo&artist='+snapshot.val().artistName+'&track='+snapshot.val().trackName+'&api_key=526e845a2fb646935dce28bbef50eaaf&format=json', 
            function(response) {result = response}).done(function (result) 
-           {
-            
-               //console.log(result.tracks.track[0].artist.name);
-               //for (var i=1;i<=5;i++)
-           //{
-               
-                  
-               //console.log(result);     
+           { 
                $("#img1").attr("src",result.track.album.image[2]['#text']);
                $("#lnk1").attr("href",result.track.album.url);
                $("#lnk1").attr("target",'_blank');
                $("#lnk1").text(result.track.album.title);
                $("#lnk1").attr("artist-name",result.track.album.artist);
-           //}
            })
+          
+        })
            
-
-    });
-
-    database.ref("SoundWave/Recent/Two").on("child_added", function(snapshot) {
-        console.log("Recent Changed");
-        console.log("Snapshot"+snapshot.val().artistName);
-        link= snapshot.val().link;
+        //retrieve and display second recent track from firebase
+        database.ref("SoundWave/Recent/Two").on("child_added", function(snapshot) {
         
-           // $("#lnk"+i).text(link);
-
            $.getJSON('http://ws.audioscrobbler.com/2.0/?method=track.getInfo&artist='+snapshot.val().artistName+'&track='+snapshot.val().trackName+'&api_key=526e845a2fb646935dce28bbef50eaaf&format=json', 
            function(response) {result = response}).done(function (result) 
-           {
-            
-               //console.log(result.tracks.track[0].artist.name);
-               //for (var i=1;i<=5;i++)
-           //{
-               
-                  
-               console.log(result);     
+           {  
                $("#img2").attr("src",result.track.album.image[2]['#text']);
                $("#lnk2").attr("href",result.track.album.url);
                $("#lnk2").attr("target",'_blank');
                $("#lnk2").text(result.track.album.title);
                $("#lnk2").attr("artist-name",result.track.album.artist);
-           //}
            })
            
+        });
 
-    });
-
-    database.ref("SoundWave/Recent/Three").on("child_added", function(snapshot) {
-        console.log("Recent Changed");
-        console.log("Snapshot"+snapshot.val().artistName);
-        link= snapshot.val().link;
+        //retrieve and display third recent track from firebase
+        database.ref("SoundWave/Recent/Three").on("child_added", function(snapshot) {
         
-           // $("#lnk"+i).text(link);
-
            $.getJSON('http://ws.audioscrobbler.com/2.0/?method=track.getInfo&artist='+snapshot.val().artistName+'&track='+snapshot.val().trackName+'&api_key=526e845a2fb646935dce28bbef50eaaf&format=json', 
            function(response) {result = response}).done(function (result) 
            {
-            
-               //console.log(result.tracks.track[0].artist.name);
-               //for (var i=1;i<=5;i++)
-           //{
-               
-                  
-               //console.log(result);     
                $("#img3").attr("src",result.track.album.image[2]['#text']);
                $("#lnk3").attr("href",result.track.album.url);
                $("#lnk3").attr("target",'_blank');
                $("#lnk3").text(result.track.album.title);
                $("#lnk3").attr("artist-name",result.track.album.artist);
-           //}
            })
            
+        });
 
-    });
-
-    database.ref("SoundWave/Recent/Four").on("child_added", function(snapshot) {
-        console.log("Recent Changed");
-        console.log("Snapshot"+snapshot.val().artistName);
-        link= snapshot.val().link;
+        //retrieve and display fourth recent track from firebase
+        database.ref("SoundWave/Recent/Four").on("child_added", function(snapshot) {
         
-           // $("#lnk"+i).text(link);
-
            $.getJSON('http://ws.audioscrobbler.com/2.0/?method=track.getInfo&artist='+snapshot.val().artistName+'&track='+snapshot.val().trackName+'&api_key=526e845a2fb646935dce28bbef50eaaf&format=json', 
            function(response) {result = response}).done(function (result) 
-           {
-            
-               //console.log(result.tracks.track[0].artist.name);
-               //for (var i=1;i<=5;i++)
-           //{
-               
-                  
-               //console.log(result);     
+           {   
                $("#img4").attr("src",result.track.album.image[2]['#text']);
                $("#lnk4").attr("href",result.track.album.url);
                $("#lnk4").attr("target",'_blank');
                $("#lnk4").text(result.track.album.title);
                $("#lnk4").attr("artist-name",result.track.album.artist);
-           //}
            })
-           
 
-    });
+         });
    }
 
-    $(document).on("click",".link",function() {
-        console.log(this.href);
-        console.log("Database1");
+   //Store track-name,artist-name of currently played track ('ON CLICK' of hyperlink(class=link)) in firebase
+   $(document).on("click",".link",function() {
+        
         if(records===0)
         {
-            console.log("One");
             database.ref("SoundWave/Recent/One").push({
             link:this.href,
             trackName:$(this).attr("track-name"),
@@ -364,7 +296,6 @@ $(document).ready(function(){
         }
         else if(records===1)
         {
-            console.log("Two");
             database.ref("SoundWave/Recent/Two").push({
             link:this.href,
             trackName:$(this).attr("track-name"),
@@ -375,7 +306,6 @@ $(document).ready(function(){
         }
         else if(records===2)
         {
-            console.log("3");
             database.ref("SoundWave/Recent/Three").push({
             link:this.href,
             trackName:$(this).attr("track-name"),
@@ -394,18 +324,17 @@ $(document).ready(function(){
             records=0;
         }
             
-        
     });
    
 
     $("#arrowright").on("click",function()
     {
-        lastFMcall();
+        trendingList();
     });
 
     $("#arrowleft").on("click",function()
     {
-        lastFMcall();
+        trendingList();
     });
 
     $("#home-button").on("click",function(){
@@ -439,7 +368,7 @@ $(document).ready(function(){
 
     });
 
-
+    //on-click of Lyrics-search button
     $("#Lyrics-search").on("click",function(){
 
         event.preventDefault();     
@@ -450,9 +379,10 @@ $(document).ready(function(){
         console.log(queryURL);
         console.log("Testing");
         ajaxCall(queryURL);
-        //playlistSearch();
+
     });
 
+    //on-click of Playlist-search button
     $("#Playlist-search").on("click",function(){
 
         event.preventDefault();     
@@ -462,7 +392,7 @@ $(document).ready(function(){
         $("#search-type-display").text("Artist name");
         
         playlistSearch();
-        //lastFMcall();
+        
     });
 
     $("#lyric-search").on("click",function(){

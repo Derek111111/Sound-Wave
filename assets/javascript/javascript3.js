@@ -9,7 +9,6 @@ $(document).ready(function(){
     //database Variables
     var k=0;
     var records=0;
-    var trendingStart = 0;
    
     // Initialize Firebase
     var config = {
@@ -220,7 +219,6 @@ $(document).ready(function(){
                 html.attr("href",data1.toptracks.track[j].url);
                 html.text(JSON.stringify(data1.toptracks.track[j].url));
                 html.attr("target",'song');
-                html.attr("artist-img",data1.toptracks.track[0].image[2]['#text']);
                 html.addClass("link");
                 //console.log(data1.toptracks.track[j].artist.name);
                 html.attr("track-name",data1.toptracks.track[j].name);
@@ -237,32 +235,23 @@ $(document).ready(function(){
     function trendingList()
     {
         
-        $.getJSON('http://ws.audioscrobbler.com/2.0/?method=chart.getTopTracks&api_key=526e845a2fb646935dce28bbef50eaaf&format=json', 
-        function(response) {resultData = response}).done(function (resultData) 
+        $.getJSON('http://ws.audioscrobbler.com/2.0/?method=chart.getTopTracks&period=3month&api_key=526e845a2fb646935dce28bbef50eaaf&format=json', 
+        function(response) {result = response}).done(function (result) 
         {
            
             //console.log(result.tracks);
             //display 4 trending tracks at a time
-            for (var i= trendingStart;i< (trendingStart + 4);i++)
+            for (var i=0;i<5;i++)
             {
-                //pick any random track among  top 50 tracks from last.fm    
-                //console.log(result.tracks.track[j].name); 
-                    //console.log((trendingStart+4)-i);
-                    var currTrack = resultData.tracks.track[i];   
-                    var artistImage = currTrack.image[2]["#text"];
-                    var artistName = currTrack.artist.name;
-                    var trackName = currTrack.name;
-                    var trackurl = currTrack.url;
-                    var difference = (trendingStart+4)-i;
-                    var currentLink = "#link"+(difference-1);
-                    //console.log("currTrack"+trackName + " : " + artistImage);
-                    $("#image"+(difference-1)).attr("src",artistImage);
-                    $(currentLink).attr("href",trackurl);
-                    $(currentLink).attr("target","song");
-                    $(currentLink).text(trackName);
-                    $(currentLink).attr("track-name",trackName);
-                    $(currentLink).attr("artist-name",artistName);
-                    $(currentLink).attr("artist-img",artistImage);
+                //pick any random track among  top 50 tracks from last.fm
+                var j=Math.floor((Math.random() * 50) + 1);     
+                //console.log(result.tracks.track[j].name);     
+                $("#image"+i).attr("src",result.tracks.track[j].image[2]['#text']);
+                $("#link"+i).attr("href",result.tracks.track[j].url);
+                $("#link"+i).attr("target",'song');
+                $("#link"+i).text(result.tracks.track[j].name);
+                $("#link"+i).attr("track-name",result.tracks.track[j].name);
+                $("#link"+i).attr("artist-name",result.tracks.track[j].artist.name);
             }
         })
         
@@ -278,12 +267,11 @@ $(document).ready(function(){
            $.getJSON('http://ws.audioscrobbler.com/2.0/?method=track.getInfo&artist='+snapshot.val().artistName+'&track='+snapshot.val().trackName+'&api_key=526e845a2fb646935dce28bbef50eaaf&format=json', 
            function(response) {result = response}).done(function (result) 
            { 
-            console.log(result);
-            $("#img1").attr("src",snapshot.val().artistImage);
-               $("#lnk1").attr("href",result.track.toptags.url);
+               $("#img1").attr("src",result.track.album.image[2]['#text']);
+               $("#lnk1").attr("href",result.track.album.url);
                $("#lnk1").attr("target",'song');
-               $("#lnk1").text(result.track.name);
-               $("#lnk1").attr("artist-name",result.track.artist.name);
+               $("#lnk1").text(result.track.album.title);
+               $("#lnk1").attr("artist-name",result.track.album.artist);
            })
           
         })
@@ -294,12 +282,11 @@ $(document).ready(function(){
            $.getJSON('http://ws.audioscrobbler.com/2.0/?method=track.getInfo&artist='+snapshot.val().artistName+'&track='+snapshot.val().trackName+'&api_key=526e845a2fb646935dce28bbef50eaaf&format=json', 
            function(response) {result = response}).done(function (result) 
            {  
-            console.log(result);
-               $("#img2").attr("src",snapshot.val().artistImage);
-               $("#lnk2").attr("href",result.track.toptags.url);
+               $("#img2").attr("src",result.track.album.image[2]['#text']);
+               $("#lnk2").attr("href",result.track.album.url);
                $("#lnk2").attr("target",'song');
-               $("#lnk2").text(result.track.name);
-               $("#lnk2").attr("artist-name",result.track.artist.name);
+               $("#lnk2").text(result.track.album.title);
+               $("#lnk2").attr("artist-name",result.track.album.artist);
            })
            
         });
@@ -310,12 +297,11 @@ $(document).ready(function(){
            $.getJSON('http://ws.audioscrobbler.com/2.0/?method=track.getInfo&artist='+snapshot.val().artistName+'&track='+snapshot.val().trackName+'&api_key=526e845a2fb646935dce28bbef50eaaf&format=json', 
            function(response) {result = response}).done(function (result) 
            {
-            console.log(result);
-               $("#img3").attr("src",snapshot.val().artistImage);
-               $("#lnk3").attr("href",result.track.toptags.url);
+               $("#img3").attr("src",result.track.album.image[2]['#text']);
+               $("#lnk3").attr("href",result.track.album.url);
                $("#lnk3").attr("target",'song');
-               $("#lnk3").text(result.track.name);
-               $("#lnk3").attr("artist-name",result.track.artist.name);
+               $("#lnk3").text(result.track.album.title);
+               $("#lnk3").attr("artist-name",result.track.album.artist);
            })
            
         });
@@ -326,12 +312,11 @@ $(document).ready(function(){
            $.getJSON('http://ws.audioscrobbler.com/2.0/?method=track.getInfo&artist='+snapshot.val().artistName+'&track='+snapshot.val().trackName+'&api_key=526e845a2fb646935dce28bbef50eaaf&format=json', 
            function(response) {result = response}).done(function (result) 
            {   
-            console.log(result);
-               $("#img4").attr("src",snapshot.val().artistImage);
-               $("#lnk4").attr("href",result.track.toptags.url);
+               $("#img4").attr("src",result.track.album.image[2]['#text']);
+               $("#lnk4").attr("href",result.track.album.url);
                $("#lnk4").attr("target",'song');
-               $("#lnk4").text(result.track.name);
-               $("#lnk4").attr("artist-name",result.track.artist.name);
+               $("#lnk4").text(result.track.album.title);
+               $("#lnk4").attr("artist-name",result.track.album.artist);
            })
 
          });
@@ -346,7 +331,6 @@ $(document).ready(function(){
             link:this.href,
             trackName:$(this).attr("track-name"),
             artistName:$(this).attr("artist-name"),
-            artistImage: $(this).attr("artist-img")
             });
             records++;
         }
@@ -356,7 +340,6 @@ $(document).ready(function(){
             link:this.href,
             trackName:$(this).attr("track-name"),
             artistName:$(this).attr("artist-name"),
-            artistImage: $(this).attr("artist-img")
             });
             records++;
 
@@ -367,7 +350,6 @@ $(document).ready(function(){
             link:this.href,
             trackName:$(this).attr("track-name"),
             artistName:$(this).attr("artist-name"),
-            artistImage: $(this).attr("artist-img")
             });
             records++;
 
@@ -378,7 +360,6 @@ $(document).ready(function(){
             link:this.href,
             trackName:$(this).attr("track-name"),
             artistName:$(this).attr("artist-name"),
-            artistImage: $(this).attr("artist-img")
             });
             records=0;
         }
@@ -388,20 +369,12 @@ $(document).ready(function(){
 
     $("#arrowright").on("click",function()
     {
-        trendingStart =trendingStart+ 4;
         trendingList();
-       
-        console.log(trendingStart);
-
     });
 
     $("#arrowleft").on("click",function()
-    {   
-        trendingStart =trendingStart- 4;
+    {
         trendingList();
-
-        console.log(trendingStart);
-
     });
 
     $("#home-button").on("click",function(){

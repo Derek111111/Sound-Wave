@@ -214,7 +214,7 @@ $(document).ready(function(){
     function trendingList()
     {
         
-        $.getJSON('http://ws.audioscrobbler.com/2.0/?method=chart.getTopTracks&api_key=526e845a2fb646935dce28bbef50eaaf&format=json', 
+        $.getJSON('http://ws.audioscrobbler.com/2.0/?method=chart.getTopTracks&api_key=526e845a2fb646935dce28bbef50eaaf&format=json&autostart', 
         function(response) {resultData = response}).done(function (resultData) 
         {
            

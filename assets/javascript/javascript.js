@@ -25,34 +25,9 @@ $(document).ready(function(){
 
     var database = firebase.database();
     var recentData = database.ref("Soundwave/Recent");
-    var recentOne;
-    var recentTwo;
-    var recentThree;
-    var recentFour;
-   
+       
     //functions
-    function createMusicSquare(){
-
-        //going to be creating a lot of the same objects
-        //better to just have a function to create one with params
-
-        var audioElement = new Audio();
-        audioElement.src = "info-from-ajax";
-
-        play-button.on("click",function(){
-
-            audioElement.play();
-
-        });
-
-        pause-button.on("click",function(){
-
-            audioElement.pause();
-
-        });
-
-    }
-
+    
     trendingList();
     recentPlaylist();
     
@@ -411,37 +386,7 @@ $(document).ready(function(){
 
     });
 
-    $("#home-button").on("click",function(){
-
-        //take me home to the place i belong west virginia
-
-    });
-    $("#main-btn").on("click",function(){
-
-        //take me home to the place i belong west virginia
-        
-        
-    });
-
     
-    $("#recommended-music").on("click",function(){
-
-
-
-    });
-
-    $("#search-button").on("click",function(){
-        
-
-
-    });
-
-    $("#top-music").on("click",function(){
-
-
-
-    });
-
     //on-click of Lyrics-search button
     $("#Lyrics-search").on("click",function(){
 
@@ -467,20 +412,6 @@ $(document).ready(function(){
         
         playlistSearch();
         
-    });
-
-    $("#lyric-search").on("click",function(){
-
-        searchtype = "lyric";
-        $("#search-type-display").text("Lyrics");
-
-    });
-
-    $("#song-search").on("click",function(){
-
-        searchtype = "song";
-        $("#search-type-display").text("Song name");
-
     });
 
 });

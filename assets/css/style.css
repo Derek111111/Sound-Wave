@@ -27,12 +27,6 @@ body{
     margin-left: 5px;
 }
 
-#btnSignup
-{
-    float:right;
-}
-
-
 .navJumbo
 {
     height:150px;
@@ -51,6 +45,7 @@ body{
     background-color: white;
     height:35px;
     width:300px;
+    float:left;
 
 }
 
@@ -59,7 +54,9 @@ footer
     text-align:center;
 }
 
-/* Extra small devices (phones, 600px and down) */
+
+/*
+ Extra small devices (phones, 600px and down) 
 @media only screen and (max-width: 640px) 
 {
     #artistSearch
@@ -77,19 +74,7 @@ footer
         width:100px;
     }
 
-    .Img1,.Img2,.Img3,.Img4{
-        width: 80%;
-    }
-    #content1,#content2,#content3,#content4{
-        width: 80%;
-    }
-/*  .soundwaveNav
-{
-    margin-top: -22px;
-    
-}*/
-
-} 
+    } 
 
 @media only screen and (max-width: 480px) 
 {
@@ -98,7 +83,7 @@ footer
         font-size: 10px;
         margin-left: 5px;
         height:20px;
-        width:150px;
+        width:50px;
     
     }
     #Lyrics-search,#Playlist-search,#btnSignup{
@@ -108,17 +93,8 @@ footer
         width:100px;
     }
 
-    .Img1,.Img2,.Img3,.Img4{
-        width: 80%;
-    }
-    #content1,#content2,#content3,#content4{
-        width: 80%;
-    }
-}
-/* Small devices (portrait tablets and large phones, 600px and up) */
-
-
-/* Medium devices (landscape tablets, 768px and up) */
+    
+Medium devices (landscape tablets, 768px and up) 
 @media only screen and (max-width: 768px) 
 {
     #artistSearch
@@ -134,11 +110,7 @@ footer
         font-size: 10px;
         width:auto;
     }
- /*   .soundwaveNav
-{
-    margin-top: -20px;
-    
-}*/
+   
 
 } 
 @media screen and (max-width: 980px)
@@ -156,4 +128,4 @@ footer
         width:auto;
         font-size: 12px;
     }
-    
+}*/

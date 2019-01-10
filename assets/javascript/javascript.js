@@ -194,7 +194,7 @@ $(document).ready(function(){
             {
                 var html =$("<a>");
                 html.attr("href",data1.toptracks.track[j].url);
-                html.text(JSON.stringify(data1.toptracks.track[j].url));
+                html.text(JSON.stringify(data1.toptracks.track[j].name));
                 html.attr("target",'song');
                 html.attr("artist-img",data1.toptracks.track[0].image[2]['#text']);
                 html.addClass("link");

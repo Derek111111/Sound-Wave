@@ -4,7 +4,11 @@
 a
 {
     font-size: 18px;
+    
 }
+a:hover { 
+    color: #df17fa;
+  }
 .glyphicon-menu-right,.glyphicon-menu-left
 {
     font-size: 35px;
@@ -123,19 +127,31 @@ Medium devices (landscape tablets, 768px and up)
    
 
 } 
-@media screen and (max-width: 980px)
+@media screen and (max-width: 600px)
 {
     #artistSearch
     {
-        font-size: 10px;
-        margin-left: 5px;
+        font-size: 8px;
+        margin-left: 0px;
         height:25px;
         width:auto;
+        height: auto;
     
     }
     #Lyrics-search,#Playlist-search,#btnSignup{
     
         width:auto;
-        font-size: 12px;
+        font-size: 8px;
+        height:auto;
+    }
+    .soundwaveNav
+    {
+        width:auto;
+        height: auto;
+    }
+    .navbar
+    {
+        height: auto;
+        width: auto;
     }
 }*/

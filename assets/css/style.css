@@ -3,6 +3,7 @@ a
     font-size: 18px;
     
 }
+
 a:hover { 
     color: #df17fa;
   }
@@ -59,8 +60,8 @@ footer
 }
 
 
-/*
- Extra small devices (phones, 600px and down) 
+
+ /*Extra small devices (phones, 600px and down)*/ 
 @media only screen and (max-width: 640px) 
 {
     #artistSearch
@@ -97,8 +98,8 @@ footer
         width:100px;
     }
 
-    
-Medium devices (landscape tablets, 768px and up) 
+}    
+/*Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) 
 {
     #artistSearch
@@ -144,4 +145,4 @@ Medium devices (landscape tablets, 768px and up)
         height: auto;
         width: auto;
     }
-}*/
+}

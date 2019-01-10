@@ -24,52 +24,73 @@
 <body>
     <div class="wrapper" id="mainPage">
     <div class="container sticky-top" id="nav-one">         <!-- Navbar -->
-      <div class="jumbotron">
-              <nav class="navbar navbar-light bg-light">
+      <div class="jumbotron navJumbo">
+              <nav class="navbar navbar-light bg-light soundwaveNav">
                 <a class="navbar-brand" href="index.html">
                     <img src="https://cdn1.iconfinder.com/data/icons/media-colorful-1/48/sound_waves-512.png" width="30" height="30" class="d-inline-block align-top" alt="Sound Wave">
                     <strong>Sound</strong><em>Wave</em>
                 </a>
                 
                 <form class="form-inline pull-right">
-                    <button class="btn btn-outline-success" type="button" id="main-btn">Main button</button>
+                    
+                    
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="Lyrics-search">Lyrics-Search</button>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="Playlist-search">Playlist-Search</button>
+                    <input class="form-control mr-sm-2" type="search" id="artistSearch" placeholder="Search" aria-label="Search">
+
                     <a href="signup.html">
-                    <button class=" btn btn-block mybtn btn-primary tx-tfm" type="button">
-                            Sign Up
-                    </button>
-                    </a>
+                        <button class=" btn btn-block mybtn btn-primary tx-tfm" type="button" id="btnSignup">
+                                Sign Up
+                        </button>
+                        </a>
                 </form>
+                
+                <!--<div class="container"> 
+                    <div class="row">               Search Bar --
+                        <div class="col">           
+                            <nav class="navbar navbar-light bg-light justify-content-center">
+                                <form class="form-inline my-2 my-lg-0">
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="Lyrics-search">Lyrics-Search</button>
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="Playlist-search">Playlist-Search</button>
+                                        <input class="form-control mr-sm-2" type="search" id="artistSearch" placeholder="Search" aria-label="Search">
+                                </form>
+                            </nav>        
+                        </div>
+                    </div>
+                  </div>-->
             </nav>
       </div>
+      
     </div>
     <div class="container" id="music-player">
-        <iframe name="song" src="https://www.last.fm/music/embed/" width=1100px height=200px frameborder=0></iframe>
-        
+    <div class="jumbotron">
+        <iframe name="song" class="songFrame" src="https://www.last.fm/music/" width=100% height=200px frameborder=0></iframe>
+    </div>
     </div>
     <div class="container">       <!-- Recent Searches -->
         <div class="jumbotron" id = "recentJumbo">
                 <h2>Recent</h2>
             <div class="row" id="recent">
                 <div class="col" id="recentContent1">
-                    <img src="https://snapchat-download.net/wp-content/uploads/2015/10/snapchat-purple-square-icon-mean.png" id="img1"/>
+                    <img class="Img1" src="https://snapchat-download.net/wp-content/uploads/2015/10/snapchat-purple-square-icon-mean.png" id="img1"/>
                     <br>
                     <a id="lnk1"></a>
                 </div>
                 <div class="col" id="recentContent2">
                     
-                    <img src="https://snapchat-download.net/wp-content/uploads/2015/10/snapchat-purple-square-icon-mean.png" id="img2"/>
+                    <img class="Img2" src="https://snapchat-download.net/wp-content/uploads/2015/10/snapchat-purple-square-icon-mean.png" id="img2"/>
                     <br>
                     <a id="lnk2"></a>
                 </div>
                 <div class="col" id="recentContent3">
                     
-                    <img src="https://snapchat-download.net/wp-content/uploads/2015/10/snapchat-purple-square-icon-mean.png" id="img3"/>
+                    <img class="Img3" src="https://snapchat-download.net/wp-content/uploads/2015/10/snapchat-purple-square-icon-mean.png" id="img3"/>
                     <br>
                     <a id="lnk3"></a>
                 </div>
                 <div class="col" id="recentContent4">
                     
-                    <img src="https://snapchat-download.net/wp-content/uploads/2015/10/snapchat-purple-square-icon-mean.png" id="img4"/>
+                    <img class="Img4" src="https://snapchat-download.net/wp-content/uploads/2015/10/snapchat-purple-square-icon-mean.png" id="img4"/>
                     <br>
                     <a id="lnk4"></a>
                 </div>
@@ -77,19 +98,7 @@
         </div>
     </div>
 
-      <div class="container"> 
-        <div class="row">               <!-- Search Bar -->
-            <div class="col">           
-                <nav class="navbar navbar-light bg-light justify-content-center">
-                    <form class="form-inline my-2 my-lg-0">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="Lyrics-search">Lyrics-Search</button>
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="Playlist-search">Playlist-Search</button>
-                            <input class="form-control mr-sm-2" type="search" id="artistSearch" placeholder="Search" aria-label="Search">
-                    </form>
-                </nav>        
-            </div>
-        </div>
-      </div>
+      
 
       <div class="container">       <!-- Trending -->
             <div class="jumbotron" id = "trendingJumbo">
@@ -97,25 +106,25 @@
                 <div class="row">
                         <span class="glyphicon glyphicon-menu-left" aria-hidden="true" id="arrowleft"></span>
                     <div class="col" id="content1">
-                        <img src="https://snapchat-download.net/wp-content/uploads/2015/10/snapchat-purple-square-icon-mean.png" id="image0"/>
+                        <img class="Img1" src="https://snapchat-download.net/wp-content/uploads/2015/10/snapchat-purple-square-icon-mean.png" id="image0"/>
                         <br>
                         <a class="link" id="link0"></a>
                     </div>
                     <div class="col" id="content2">
                         
-                        <img src="https://snapchat-download.net/wp-content/uploads/2015/10/snapchat-purple-square-icon-mean.png" id="image1"/>
+                        <img class="Img2" src="https://snapchat-download.net/wp-content/uploads/2015/10/snapchat-purple-square-icon-mean.png" id="image1"/>
                         <br>
                         <a class="link" id="link1"></a>
                     </div>
                     <div class="col" id="content3">
                         
-                        <img src="https://snapchat-download.net/wp-content/uploads/2015/10/snapchat-purple-square-icon-mean.png" id="image2"/>
+                        <img class="Img3" src="https://snapchat-download.net/wp-content/uploads/2015/10/snapchat-purple-square-icon-mean.png" id="image2"/>
                         <br>
                         <a class="link" id="link2"></a>
                     </div>
                     <div class="col" id="content4">
                         
-                        <img src="https://snapchat-download.net/wp-content/uploads/2015/10/snapchat-purple-square-icon-mean.png" id="image3"/>
+                        <img class="Img4" src="https://snapchat-download.net/wp-content/uploads/2015/10/snapchat-purple-square-icon-mean.png" id="image3"/>
                         <br>
                         <a class="link" id="link3"></a>
                     </div>
@@ -133,23 +142,23 @@
     <footer>
         <p>
             <img src="https://cdn1.iconfinder.com/data/icons/media-colorful-1/48/sound_waves-512.png" width="30" height="30" class="d-inline-block align-top" alt="Sound Wave">
-            <strong>Sound</strong><em>Wave</em> Copy @copy; All rights reserved.
-            <p>         <!-- Social Media -->
+            <strong><em></em>SoundWave</em></strong>@copy; All rights reserved.
+           <!-- <p>         Social Media
                 <li>
                     <a href="Instagram-PlaceHolder">
-                        <!--<img src="assets/instagram.png" alt="Instagram" />-->           <!-- Instagram Icon: needs to be resized -->
-                    </a>                                                 <!-- The website to find more Icons is: https://www.flaticon.com/packs/social-media-logos-2 -->
+                        <img src="assets/instagram.png" alt="Instagram" />          Instagram Icon: needs to be resized
+                    </a>                                                    The website to find more Icons is: https://www.flaticon.com/packs/social-media-logos-2
                 </li>
-            </p>
+            </p>--> 
         </p>
-            <div>
+            <!--<div>
                 Icons made by 
                 <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> 
                 from 
                 <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> 
                 is licensed by 
                 <a href="http://creativecommons.org/licenses/by/3.0/" title ="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
-            </div>
+            </div>-->
     </footer>
 </div>
 <script src="https://connect.soundcloud.com/sdk/sdk-3.3.1.js"></script>

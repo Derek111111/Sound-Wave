@@ -8,3 +8,152 @@ a
     text-align:center;
     margin-top: 69px;
 }
+
+body{
+    background-image: url("../images/background1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+
+#Lyrics-search,#Playlist-search,#btnSignup{
+    background-color: rgb(223, 89, 223);
+    color: white;
+    padding:10px;
+    font-weight: bolder;
+    font-size: 16px;
+    border: none;
+    margin-left: 5px;
+}
+
+#btnSignup
+{
+    float:right;
+}
+
+
+.navJumbo
+{
+    height:150px;
+}
+/*.soundwaveNav
+{
+    margin-top: -32px;
+    padding: 10px;
+    height:120px;
+}*/
+
+#artistSearch
+{
+    font-size: 16px;
+    margin-left: 5px;
+    background-color: white;
+    height:35px;
+    width:300px;
+
+}
+
+footer
+{
+    text-align:center;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 640px) 
+{
+    #artistSearch
+    {
+        font-size: 10px;
+        margin-left: 5px;
+        height:20px;
+        width:150px;
+    
+    }
+    #Lyrics-search,#Playlist-search,#btnSignup{
+        
+        font-size: 8px;
+        padding:5px;
+        width:100px;
+    }
+
+    .Img1,.Img2,.Img3,.Img4{
+        width: 80%;
+    }
+    #content1,#content2,#content3,#content4{
+        width: 80%;
+    }
+/*  .soundwaveNav
+{
+    margin-top: -22px;
+    
+}*/
+
+} 
+
+@media only screen and (max-width: 480px) 
+{
+    #artistSearch
+    {
+        font-size: 10px;
+        margin-left: 5px;
+        height:20px;
+        width:150px;
+    
+    }
+    #Lyrics-search,#Playlist-search,#btnSignup{
+        
+        font-size: 10px;
+        padding:5px;
+        width:100px;
+    }
+
+    .Img1,.Img2,.Img3,.Img4{
+        width: 80%;
+    }
+    #content1,#content2,#content3,#content4{
+        width: 80%;
+    }
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) 
+{
+    #artistSearch
+    {
+        font-size: 10px;
+        margin-left: 5px;
+        height:25px;
+        width:auto;
+    
+    }
+    #Lyrics-search,#Playlist-search,#btnSignup{
+        
+        font-size: 10px;
+        width:auto;
+    }
+ /*   .soundwaveNav
+{
+    margin-top: -20px;
+    
+}*/
+
+} 
+@media screen and (max-width: 980px)
+{
+    #artistSearch
+    {
+        font-size: 10px;
+        margin-left: 5px;
+        height:25px;
+        width:auto;
+    
+    }
+    #Lyrics-search,#Playlist-search,#btnSignup{
+    
+        width:auto;
+        font-size: 12px;
+    }
+    

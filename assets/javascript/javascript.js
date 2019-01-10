@@ -164,6 +164,7 @@ $(document).ready(function(){
                             $("#music-player").css("display","none");
                             $("#lyrics-holder").css("text-align","center");
                             $("#lyrics-holder").css("font-size","18px");
+                            $("#lyrics-holder").css("color","white");
 
                         }
                         else
@@ -227,6 +228,7 @@ $(document).ready(function(){
                 html.attr("artist-name",data1.toptracks.track[j].artist.name);
                 $("#lyrics-holder").append("<br><br>");
                 $("#lyrics-holder").append(html);
+                html.css("color","white");
             }
            
     });
@@ -241,7 +243,7 @@ $(document).ready(function(){
         function(response) {resultData = response}).done(function (resultData) 
         {
            
-            //console.log(result.tracks);
+            //console.log("Trending:"+JSON.stringify(resultData));
             //display 4 trending tracks at a time
             for (var i= trendingStart;i< (trendingStart + 4);i++)
             {
@@ -273,14 +275,14 @@ $(document).ready(function(){
    {
         
         //retrieve and display first recent track from firebase
-        database.ref("SoundWave/Recent/One").on("child_added", function(snapshot) {
+        database.ref("SoundWave/Recent/One").on("value", function(snapshot) {
         
            $.getJSON('http://ws.audioscrobbler.com/2.0/?method=track.getInfo&artist='+snapshot.val().artistName+'&track='+snapshot.val().trackName+'&api_key=526e845a2fb646935dce28bbef50eaaf&format=json', 
            function(response) {result = response}).done(function (result) 
            { 
-            console.log(result);
-            $("#img1").attr("src",snapshot.val().artistImage);
-               $("#lnk1").attr("href",result.track.toptags.url);
+               console.log(result.track.url);
+               $("#img1").attr("src",snapshot.val().artistImage);
+               $("#lnk1").attr("href",result.track.url);
                $("#lnk1").attr("target",'song');
                $("#lnk1").text(result.track.name);
                $("#lnk1").attr("artist-name",result.track.artist.name);
@@ -289,14 +291,14 @@ $(document).ready(function(){
         })
            
         //retrieve and display second recent track from firebase
-        database.ref("SoundWave/Recent/Two").on("child_added", function(snapshot) {
+        database.ref("SoundWave/Recent/Two").on("value", function(snapshot) {
         
            $.getJSON('http://ws.audioscrobbler.com/2.0/?method=track.getInfo&artist='+snapshot.val().artistName+'&track='+snapshot.val().trackName+'&api_key=526e845a2fb646935dce28bbef50eaaf&format=json', 
            function(response) {result = response}).done(function (result) 
            {  
-            console.log(result);
+               //console.log(result.track.url);
                $("#img2").attr("src",snapshot.val().artistImage);
-               $("#lnk2").attr("href",result.track.toptags.url);
+               $("#lnk2").attr("href",result.track.url);
                $("#lnk2").attr("target",'song');
                $("#lnk2").text(result.track.name);
                $("#lnk2").attr("artist-name",result.track.artist.name);
@@ -305,14 +307,14 @@ $(document).ready(function(){
         });
 
         //retrieve and display third recent track from firebase
-        database.ref("SoundWave/Recent/Three").on("child_added", function(snapshot) {
+        database.ref("SoundWave/Recent/Three").on("value", function(snapshot) {
         
            $.getJSON('http://ws.audioscrobbler.com/2.0/?method=track.getInfo&artist='+snapshot.val().artistName+'&track='+snapshot.val().trackName+'&api_key=526e845a2fb646935dce28bbef50eaaf&format=json', 
            function(response) {result = response}).done(function (result) 
            {
-            console.log(result);
+               //console.log(result);
                $("#img3").attr("src",snapshot.val().artistImage);
-               $("#lnk3").attr("href",result.track.toptags.url);
+               $("#lnk3").attr("href",result.track.url);
                $("#lnk3").attr("target",'song');
                $("#lnk3").text(result.track.name);
                $("#lnk3").attr("artist-name",result.track.artist.name);
@@ -321,14 +323,14 @@ $(document).ready(function(){
         });
 
         //retrieve and display fourth recent track from firebase
-        database.ref("SoundWave/Recent/Four").on("child_added", function(snapshot) {
+        database.ref("SoundWave/Recent/Four").on("value", function(snapshot) {
         
            $.getJSON('http://ws.audioscrobbler.com/2.0/?method=track.getInfo&artist='+snapshot.val().artistName+'&track='+snapshot.val().trackName+'&api_key=526e845a2fb646935dce28bbef50eaaf&format=json', 
            function(response) {result = response}).done(function (result) 
            {   
-            console.log(result);
+               //console.log(result);
                $("#img4").attr("src",snapshot.val().artistImage);
-               $("#lnk4").attr("href",result.track.toptags.url);
+               $("#lnk4").attr("href",result.track.url);
                $("#lnk4").attr("target",'song');
                $("#lnk4").text(result.track.name);
                $("#lnk4").attr("artist-name",result.track.artist.name);
@@ -342,7 +344,7 @@ $(document).ready(function(){
         
         if(records===0)
         {
-            database.ref("SoundWave/Recent/One").push({
+            database.ref("SoundWave/Recent/One").set({
             link:this.href,
             trackName:$(this).attr("track-name"),
             artistName:$(this).attr("artist-name"),
@@ -352,7 +354,7 @@ $(document).ready(function(){
         }
         else if(records===1)
         {
-            database.ref("SoundWave/Recent/Two").push({
+            database.ref("SoundWave/Recent/Two").set({
             link:this.href,
             trackName:$(this).attr("track-name"),
             artistName:$(this).attr("artist-name"),
@@ -363,7 +365,7 @@ $(document).ready(function(){
         }
         else if(records===2)
         {
-            database.ref("SoundWave/Recent/Three").push({
+            database.ref("SoundWave/Recent/Three").set({
             link:this.href,
             trackName:$(this).attr("track-name"),
             artistName:$(this).attr("artist-name"),
@@ -374,7 +376,7 @@ $(document).ready(function(){
         }
         else if(records===3)
         {
-            database.ref("SoundWave/Recent/Four").push({
+            database.ref("SoundWave/Recent/Four").set({
             link:this.href,
             trackName:$(this).attr("track-name"),
             artistName:$(this).attr("artist-name"),
@@ -389,18 +391,23 @@ $(document).ready(function(){
     $("#arrowright").on("click",function()
     {
         trendingStart =trendingStart+ 4;
+        if(trendingStart>=49)
+        {
+            trendingStart=0;
+        }
         trendingList();
        
-        console.log(trendingStart);
-
     });
 
     $("#arrowleft").on("click",function()
     {   
         trendingStart =trendingStart- 4;
+        if(trendingStart<=0)
+        {
+            trendingStart=49;
+        }
         trendingList();
 
-        console.log(trendingStart);
 
     });
 

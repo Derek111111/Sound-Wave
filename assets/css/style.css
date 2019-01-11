@@ -1,3 +1,6 @@
+/*Font*/
+@import url('https://fonts.googleapis.com/css?family=Monoton');
+
 a
 {
     font-size: 18px;
@@ -14,11 +17,18 @@ a:hover {
     margin-top: 69px;
 }
 
+
 body{
     background-image: url("../images/background1.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    
+}
+
+/*Applying Fonts*/
+#font-1, #font-2 {
+    font-family: 'Monoton', cursive;
+    color: rgb(160, 58, 160);
+    font-size: 23px;
 }
 
 
@@ -61,7 +71,11 @@ footer
 
 
 
+<<<<<<< HEAD
  /*Extra small devices (phones, 600px and down)*/ 
+=======
+ /*Extra small devices (phones, 600px and down) 
+>>>>>>> 097bf2992496c77038403e8cc824bddf961c39e2
 @media only screen and (max-width: 640px) 
 {
     #artistSearch

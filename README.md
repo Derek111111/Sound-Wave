@@ -18,7 +18,7 @@ APIs (Last.fm and Musixmatch)
 New Technologies:
 * Underscore.js
 
-Team Members
+Team Members:
 Minal 
 Praisy
 Derek

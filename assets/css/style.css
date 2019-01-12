@@ -1,14 +1,15 @@
 /*Font*/
 @import url('https://fonts.googleapis.com/css?family=Monoton');
 
-a
-{
+.wrapper a {
     font-size: 18px;
-    
+    color: rgb(0, 115, 255);
 }
 
-a:hover { 
+.wrapper a:hover { 
     color: #df17fa;
+    transition: 0.4s;
+    text-decoration: none;
   }
 .glyphicon-menu-right,.glyphicon-menu-left
 {
@@ -35,8 +36,8 @@ body{
     font-size: 23px;
 }
 
-
-#Lyrics-search,#Playlist-search,#btnSignup{
+/*Search Buttons*/
+#Lyrics-search,#Playlist-search,#btnSignup {
     background-color: rgb(223, 89, 223);
     color: white;
     padding:10px;
@@ -44,6 +45,24 @@ body{
     font-size: 16px;
     border: none;
     margin-left: 5px;
+}   #Playlist-search:hover {
+    background-color: rgb(0, 115, 255);
+    color: white;
+    padding:10px;
+    font-weight: bolder;
+    font-size: 16px;
+    border: none;
+    margin-left: 5px;
+    transition: 0.3s;
+}   #Lyrics-search:hover {
+    background-color: rgb(0, 115, 255);
+    color: white;
+    padding:10px;
+    font-weight: bolder;
+    font-size: 16px;
+    border: none;
+    margin-left: 5px;
+    transition: 0.3s;
 }
 
 .navJumbo
@@ -77,8 +96,8 @@ footer
 
 
 
-
-@media screen and (max-width: 965px)
+ /*Extra small devices (phones, 600px and down) 
+@media only screen and (max-width: 640px) 
 {
     #artistSearch
     {

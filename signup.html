@@ -9,7 +9,7 @@
         <!--<link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />-->
         <link rel="stylesheet" type="text/css" href="assets/css/signupreg.css">
         <!-- JavaScript -->
-        <script src="assets/javascript/javascript.js"></script>
+        
         <!-- Bootstrap -->
         <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -20,6 +20,7 @@
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
         <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+        <script src="assets/javascript/javascript.js"></script>
     </head>
 <body>
     <div class="container">
@@ -51,7 +52,7 @@
                               <p class="text-center">By signing up you accept our Terms Of Use</p>
                            </div>
                            <div class="col-md-12 text-center ">
-                              <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
+                              <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm" id="Login">Login</button>
                                
                            </div>
                            <div class="col-md-12 ">
@@ -92,11 +93,11 @@
                            </div>
                            <div class="form-group">
                               <label for="exampleInputEmail1">Email address</label>
-                              <input type="email" name="email"  class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                              <input type="email" name="email"  class="form-control" id="signUpemail" aria-describedby="emailHelp" placeholder="Enter email">
                            </div>
                            <div class="form-group">
                               <label for="exampleInputEmail1">Password</label>
-                              <input type="password" name="password" id="password"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
+                              <input type="password" name="password" id="signUppassword"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
                            </div>
                            <div class="col-md-12 text-center mb-3">
                               <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm" id='submit'>Submit</button>

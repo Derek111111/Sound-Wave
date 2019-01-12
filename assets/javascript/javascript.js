@@ -1,15 +1,13 @@
 $(document).ready(function(){
 
     //variables
-
-    var searchtype = "all";//artist, song, by lyrics
     var artistSearch;
     var queryURL;
 
     //database Variables
-    var k=0;
     var records=0;
     var trendingStart = 0;
+    var trackName=[];
    
     // Initialize Firebase
     var config = {
@@ -26,48 +24,11 @@ $(document).ready(function(){
     var database = firebase.database();
     var recentData = database.ref("Soundwave/Recent");
        
-    //functions
     
+
+    //functions for initiation
     trendingList();
     recentPlaylist();
-    
-    function bubbleSort(array){
-        
-        for(var i = 1;i < array.length; i++){
-
-            var currObj = array[i];
-            var prevObj = array[i-1];
-            if(currObj.timeAdded < prevObj.timeAdded){
-
-                console.log("Current Objetc"+currObj,prevObj);
-                array[i-1] = currObj;
-                array[i] = prevObj;
-                bubbleSort(array);
-
-            }
-
-        }
-
-    }
-
-    function timeStampCheck(recent,data){//Don't really need a function just making it so it's easy to edit/find
-
-        var values = data.val();
-        var keyValues = Object.keys(values);
-        console.log(keyValues);
-
-        bubbleSort(keyValues);
-
-        var topFour = [keyValues[0],keyValues[1],keyValues[2],keyValues[3]];
-        console.log(topFour);
-        for(var i = 0; i < topFour.length; i++){
-
-            console.log("TimeStamp: " + topFour[i].timeAdded);
-
-        }
-
-
-    }
 
     //MusixMatch Ajax Call
     function ajaxCall(queryURL){
@@ -89,7 +50,19 @@ $(document).ready(function(){
         }).done(function(data1){
 
             retrievedData = data1;
-            //console.log("Musixmatch:" +retrievedData);      
+            //console.log("Musixmatch:" +retrievedData); 
+            var track = retrievedData.message.body.track_list[0];
+
+            //Check if call returns data
+            if(track == null){
+                console.log("ERROR ERROR ERROR");
+                $("#artistSearch").val("No song found");
+                //1.5 seconds and then the text goes blank
+                _.delay(function(){
+                    $("#artistSearch").val("");
+                },1500)
+                return;
+            }     
             var trackId=retrievedData.message.body.track_list[0].track.track_id;    
             //console.log(data1.message.body.track_list[0].track.track_name);
             var track_name=data1.message.body.track_list[0].track.track_name;
@@ -134,6 +107,8 @@ $(document).ready(function(){
                             lyricDiv.text(currentLine);
                             $("#lyrics-holder").append(lyricDiv);
                             currentLine = "";
+
+                            //Hide Recent and Trending when lyrics are searched
                             $("#recentJumbo").css("display","none");
                             $("#trendingJumbo").css("display","none");
                             $("#music-player").css("display","none");
@@ -155,6 +130,7 @@ $(document).ready(function(){
         }).fail(function(error){
 
             console.log("ERROR: ");
+            $("#searchText").val("No Lyrics found");
 
         });
 
@@ -181,15 +157,32 @@ $(document).ready(function(){
 
             retrieveddata = JSON.stringify(data1);
             //console.log("Lastfm:" +retrieveddata);    
+            var topTracks = data1.toptracks;
+
+            //Check if call returns data
+            if(topTracks == null){
+                console.log("ERROR ERROR ERROR");
+                $("#artistSearch").val("No Artist found");
+                //1.5 seconds and then the text goes blank
+                _.delay(function(){
+                    $("#artistSearch").val("");
+                },1500)
+                return;
+            }
+
+            //Hide Recent and Trending when playlists are searched
             $("#lyrics-holder").empty();
-            //$("#music-player").css("display","none");
             $("#recentJumbo").css("display","none");
             $("#trendingJumbo").css("display","none");
+            $("#music-player").css("display","inherit");
             $("#lyrics-holder").css("text-align","center");
             //display image of an artist
             var image=$("<img>");
+            
             image.attr("src",data1.toptracks.track[0].image[2]['#text']);
             $("#lyrics-holder").append(image);
+
+            //display top 10 lyrics of an artist
             for(var j=0;j<10;j++)
             {
                 var html =$("<a>");
@@ -206,6 +199,11 @@ $(document).ready(function(){
                 html.css("color","white");
             }
            
+    }).fail(function(){
+
+        console.log("ERROR: ");
+        $("#searchText").val("No Artist found");
+
     });
 
     }
@@ -222,9 +220,8 @@ $(document).ready(function(){
             //display 4 trending tracks at a time
             for (var i= trendingStart;i< (trendingStart + 4);i++)
             {
-                //pick any random track among  top 50 tracks from last.fm    
-                //console.log(result.tracks.track[j].name); 
-                    //console.log((trendingStart+4)-i);
+                //pick tracks among  top 50 tracks from last.fm    
+                
                     var currTrack = resultData.tracks.track[i];   
                     var artistImage = currTrack.image[2]["#text"];
                     var artistName = currTrack.artist.name;
@@ -232,7 +229,6 @@ $(document).ready(function(){
                     var trackurl = currTrack.url;
                     var difference = (trendingStart+4)-i;
                     var currentLink = "#link"+(difference-1);
-                    //console.log("currTrack"+trackName + " : " + artistImage);
                     $("#image"+(difference-1)).attr("src",artistImage);
                     $(currentLink).attr("href",trackurl);
                     $(currentLink).attr("target","song");
@@ -314,11 +310,27 @@ $(document).ready(function(){
          });
    }
 
+   //to check if same record already exists in firebase
+   $(window).on("load",function() {
+    localStorage.setItem("Tracks", JSON.stringify(trackName));
+    // retrieving our data and converting it back into an array
+    var retrievedData = localStorage.getItem("Tracks");
+    var trackName = JSON.parse(retrievedData);
+    console.log(trackName);
+    alert(trackName);
+  });
+
    //Store track-name,artist-name of currently played track ('ON CLICK' of hyperlink(class=link)) in firebase
    $(document).on("click",".link",function() {
         
+    var recentText=$(this).attr("track-name");
+    var checknumber = trackName.indexOf(recentText);
+    //used set over push for firebase because we have preset folders     
+    if(checknumber===-1)
+    {
         if(records===0)
         {
+            
             database.ref("SoundWave/Recent/One").set({
             link:this.href,
             trackName:$(this).attr("track-name"),
@@ -359,10 +371,14 @@ $(document).ready(function(){
             });
             records=0;
         }
+        trackName.push($(this).attr("track-name"));
+        
+    }
             
     });
    
 
+    //navigating through top tracks
     $("#arrowright").on("click",function()
     {
         trendingStart =trendingStart+ 4;
@@ -374,6 +390,7 @@ $(document).ready(function(){
        
     });
 
+    //navigating through top tracks
     $("#arrowleft").on("click",function()
     {   
         trendingStart =trendingStart- 4;
@@ -393,10 +410,23 @@ $(document).ready(function(){
         event.preventDefault();     
         searchtype = "artist";
         artistSearch=$("#artistSearch").val().trim();
+
+        //validation for search text
+        if(artistSearch.length < 3){
+
+            $("#artistSearch").val("");
+            $("#artistSearch").val("Search too short");
+    
+            _.delay(function(){
+                $("#artistSearch").val("");
+               
+            }, 1500);
+            return;
+
+        }
+
         queryURL="https://api.musixmatch.com/ws/1.1/track.search";
         $("#search-type-display").text("Artist name");
-        //console.logconsole.log(queryURL);
-        //console.log("Testing");
         ajaxCall(queryURL);
 
     });
@@ -407,6 +437,20 @@ $(document).ready(function(){
         event.preventDefault();     
         searchtype = "artist";
         artistSearch=$("#artistSearch").val().trim();
+        $("#music-player").css("display","inherit");
+        //validation for search text
+        if(artistSearch.length < 3){
+
+            $("#artistSearch").val("");
+            $("#artistSearch").val("Search too short");
+            _.delay(function(){
+                $("#artistSearch").val("");
+                
+            }, 1500);
+            return;
+
+        }
+
         queryURL="https://api.musixmatch.com/ws/1.1/track.search";
         $("#search-type-display").text("Artist name");
         

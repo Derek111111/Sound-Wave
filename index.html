@@ -15,6 +15,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
     <!-- JavaScript -->
     <script src="assets/javascript/javascript.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
@@ -33,20 +34,20 @@
                     <input class="form-control mr-sm-2" type="search" id="artistSearch" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="Lyrics-search">Lyrics-Search</button>
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="Playlist-search">Playlist-Search</button>
+                    
                 </form>
+                
+                
             </nav>
+            <strong><p id="searchText" style="text-align: center; font-weight:bold;"></p></strong>
       </div>
       
     </div>
-    <div class="container" id="music-player">
-    <div class="jumbotron">
-        <iframe name="song" class="songFrame" src="https://www.last.fm/music/" scrolling="no" width=100% height=200px frameborder=0></iframe>
-    </div>
-    </div>
+    
 
     <div class="container">       <!-- Recent Searches -->
         <div class="jumbotron" id = "recentJumbo">
-                <h2>Recent</h2>
+                <h2>Recent  </h2><br>
             <div class="row" id="recent">
                 <div class="col" id="recentContent1">
                     <img class="Img1" src="https://snapchat-download.net/wp-content/uploads/2015/10/snapchat-purple-square-icon-mean.png" id="img1"/>
@@ -75,7 +76,11 @@
         </div>
     </div>
 
-      
+    <div class="container" id="music-player">
+        <div class="jumbotron">
+            <iframe name="song" class="songFrame" src="https://www.last.fm/music/"  width=100% height=300px frameborder=0></iframe>
+        </div>
+        </div>
 
       <div class="container">       <!-- Trending -->
             <div class="jumbotron" id = "trendingJumbo">

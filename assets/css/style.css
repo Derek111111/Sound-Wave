@@ -17,6 +17,10 @@ a:hover {
     margin-top: 69px;
 }
 
+.navbar{
+    flex-wrap: nowrap;
+    
+}
 
 body{
     background-image: url("../images/background1.jpg");
@@ -46,6 +50,7 @@ body{
 {
     height:150px;
 }
+
 /*.soundwaveNav
 {
     margin-top: -32px;
@@ -61,6 +66,7 @@ body{
     height:35px;
     width:300px;
     float:left;
+    font-weight: bold;
 
 }
 
@@ -71,92 +77,101 @@ footer
 
 
 
-<<<<<<< HEAD
- /*Extra small devices (phones, 600px and down)*/ 
-=======
- /*Extra small devices (phones, 600px and down) 
->>>>>>> 097bf2992496c77038403e8cc824bddf961c39e2
-@media only screen and (max-width: 640px) 
+
+@media screen and (max-width: 965px)
 {
     #artistSearch
     {
         font-size: 10px;
-        margin-left: 5px;
-        height:20px;
-        width:150px;
-    
-    }
-    #Lyrics-search,#Playlist-search,#btnSignup{
-        
-        font-size: 8px;
-        padding:5px;
-        width:100px;
-    }
-
-    } 
-
-@media only screen and (max-width: 480px) 
-{
-    #artistSearch
-    {
-        font-size: 10px;
-        margin-left: 5px;
-        height:20px;
-        width:50px;
-    
-    }
-    #Lyrics-search,#Playlist-search,#btnSignup{
-        
-        font-size: 10px;
-        padding:5px;
-        width:100px;
-    }
-
-}    
-/*Medium devices (landscape tablets, 768px and up) */
-@media only screen and (max-width: 768px) 
-{
-    #artistSearch
-    {
-        font-size: 10px;
-        margin-left: 5px;
-        height:25px;
-        width:auto;
-    
-    }
-    #Lyrics-search,#Playlist-search,#btnSignup{
-        
-        font-size: 10px;
-        width:auto;
-    }
-   
-
-} 
-@media screen and (max-width: 600px)
-{
-    #artistSearch
-    {
-        font-size: 8px;
         margin-left: 0px;
         height:25px;
         width:auto;
         height: auto;
     
     }
-    #Lyrics-search,#Playlist-search,#btnSignup{
+    #Lyrics-search,#Playlist-search{
     
-        width:auto;
-        font-size: 8px;
-        height:auto;
+        
+        font-size: 10px;
+       
     }
-    .soundwaveNav
-    {
-        width:auto;
-        height: auto;
-    }
+    
     .navbar
     {
-        height: auto;
+        height: 100px;
         width: auto;
+        margin-top: 0;
+        
+    }
+    #font-1, #font-2 {
+        font-size: 0px;
+    }
+}
+
+/*Medium devices (landscape tablets, 768px and up) */
+@media screen and (max-width: 768px) 
+{
+    #artistSearch
+    {
+        font-size: 10px;
+        margin-left: 5px;
+        height:25px;
+        width:auto;
+    
+    }
+    #Lyrics-search,#Playlist-search{
+        
+        font-size: 10px;
+        
+        text-align: center;
+    }
+
+    
+    .navbar
+    {
+        height: 100px;
+        width: auto;
+        margin-top: 0;
+        
+    }
+   
+    #font-1, #font-2 {
+        font-size: 0px;
+    }
+
+    .songFrame{
+        height:400px;
+    }
+
+} 
+
+@media (min-width: 644px)  and (max-width: 660px) 
+{
+    #artistSearch
+    {
+        font-size: 10px;
+        margin-left: 5px;
+        height:25px;
+        
+    
+    }
+    #Lyrics-search,#Playlist-search{
+        
+        font-size: 10px;
+        
+        text-align: center;
+    }
+
+    
+    .navbar
+    {
+        
+        margin-top: -30px;
+        -ms-flex-wrap: nowrap
+        
+    }
+   
+    #font-1, #font-2 {
+        font-size: 0px;
     }
 }

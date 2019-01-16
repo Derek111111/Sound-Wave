@@ -3,6 +3,12 @@ $(document).ready(function(){
     //variables
     var artistSearch;
     var queryURL;
+    var recentText;
+    var artist;
+    var videoId=" ";
+    var res=0;
+    var difference = 0 ;
+    var currentLink = 0;
 
     //database Variables
     var records=0;
@@ -30,6 +36,27 @@ $(document).ready(function(){
     trendingList();
     recentPlaylist();
 
+    //function to make Youtube API call
+
+    function videoCall(){
+        console.log("videocall  "+recentText);
+        var txt=recentText + " " + artist;
+        var ajaxurl='https://www.googleapis.com/youtube/v3/search?part=snippet&q="'+ txt +'"type=video&maxResults=2&key=AIzaSyDxWiq4fnwj9fg2AWRpkdZAUActrnGwNrg';
+        console.log("video URL "+ajaxurl);
+        $.ajax({
+               
+            type :'GET',
+            url:ajaxurl,
+            async: false,
+            
+            }).done(function(data){
+            videoId=data.items[0].id.videoId;
+        
+    });
+   
+    return videoId;
+    }
+    
     //MusixMatch Ajax Call
     function ajaxCall(queryURL){
 
@@ -186,7 +213,8 @@ $(document).ready(function(){
             for(var j=0;j<10;j++)
             {
                 var html =$("<a>");
-                html.attr("href",data1.toptracks.track[j].url);
+                //html.attr("href",data1.toptracks.track[j].url);
+                html.attr("href","#");
                 html.text(JSON.stringify(data1.toptracks.track[j].name));
                 html.attr("target",'song');
                 html.attr("artist-img",data1.toptracks.track[0].image[2]['#text']);
@@ -226,11 +254,14 @@ $(document).ready(function(){
                     var artistImage = currTrack.image[2]["#text"];
                     var artistName = currTrack.artist.name;
                     var trackName = currTrack.name;
+                    recentText=trackName;
+                    
+                    difference = (trendingStart+4)-i;
+                    currentLink = "#link"+(difference-1);
                     var trackurl = currTrack.url;
-                    var difference = (trendingStart+4)-i;
-                    var currentLink = "#link"+(difference-1);
                     $("#image"+(difference-1)).attr("src",artistImage);
-                    $(currentLink).attr("href",trackurl);
+                    //$(currentLink).attr("href",trackurl);
+                    $(currentLink).attr("href","#");
                     $(currentLink).attr("target","song");
                     $(currentLink).text(trackName);
                     $(currentLink).attr("track-name",trackName);
@@ -240,6 +271,7 @@ $(document).ready(function(){
         })
         
     }
+
 
    //function to display recently played tracks in Recent section
    function recentPlaylist()
@@ -253,10 +285,11 @@ $(document).ready(function(){
            { 
                console.log(result.track.url);
                $("#img1").attr("src",snapshot.val().artistImage);
-               $("#lnk1").attr("href",result.track.url);
+               $("#lnk1").attr("href","#");
                $("#lnk1").attr("target",'song');
                $("#lnk1").text(result.track.name);
                $("#lnk1").attr("artist-name",result.track.artist.name);
+               $("#lnk1").attr("track-name",result.track.name);
            })
           
         })
@@ -269,10 +302,12 @@ $(document).ready(function(){
            {  
                //console.log(result.track.url);
                $("#img2").attr("src",snapshot.val().artistImage);
-               $("#lnk2").attr("href",result.track.url);
+               //$("#lnk2").attr("href",result.track.url);
+               $("#lnk2").attr("href","#");
                $("#lnk2").attr("target",'song');
                $("#lnk2").text(result.track.name);
                $("#lnk2").attr("artist-name",result.track.artist.name);
+               $("#lnk2").attr("track-name",result.track.name);
            })
            
         });
@@ -285,10 +320,11 @@ $(document).ready(function(){
            {
                //console.log(result);
                $("#img3").attr("src",snapshot.val().artistImage);
-               $("#lnk3").attr("href",result.track.url);
+               $("#lnk3").attr("href","#");
                $("#lnk3").attr("target",'song');
                $("#lnk3").text(result.track.name);
                $("#lnk3").attr("artist-name",result.track.artist.name);
+               $("#lnk3").attr("track-name",result.track.name);
            })
            
         });
@@ -301,29 +337,38 @@ $(document).ready(function(){
            {   
                //console.log(result);
                $("#img4").attr("src",snapshot.val().artistImage);
-               $("#lnk4").attr("href",result.track.url);
+               $("#lnk4").attr("href","#");
                $("#lnk4").attr("target",'song');
                $("#lnk4").text(result.track.name);
                $("#lnk4").attr("artist-name",result.track.artist.name);
+               $("#lnk4").attr("track-name",result.track.name);
            })
 
          });
    }
 
    //to check if same record already exists in firebase
-   $(window).on("load",function() {
+  /* $(window).on("load",function() {
     localStorage.setItem("Tracks", JSON.stringify(trackName));
     // retrieving our data and converting it back into an array
     var retrievedData = localStorage.getItem("Tracks");
-    var trackName = JSON.parse(retrievedData);
+    var trackName = (retrievedData);
     console.log(trackName);
     alert(trackName);
-  });
+  });*/
 
    //Store track-name,artist-name of currently played track ('ON CLICK' of hyperlink(class=link)) in firebase
    $(document).on("click",".link",function() {
         
-    var recentText=$(this).attr("track-name");
+    recentText=$(this).attr("track-name");
+    artist=$(this).attr("artist-name");
+    console.log("recenttext: "+recentText);
+
+    //YouTube API call
+    videoId=videoCall();
+    console.log("videoid:  "+videoId);
+    //embed URL
+    $(this).attr("href","https://www.youtube.com/embed/"+videoId+"?rel=0;&autoplay=1");
     var checknumber = trackName.indexOf(recentText);
     //used set over push for firebase because we have preset folders     
     if(checknumber===-1)
@@ -374,6 +419,7 @@ $(document).ready(function(){
         trackName.push($(this).attr("track-name"));
         
     }
+    //videoCall();
             
     });
    

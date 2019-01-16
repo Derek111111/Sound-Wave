@@ -16,15 +16,12 @@ Firebase for persistant storage
 APIs (Last.fm and Musixmatch)
 
 New Technologies:
-Underscore.js
+* Underscore.js
 
 Team Members:
-Derek
 Minal 
 Praisy
+Derek
 Uriel
 
 Live site can be accessed here:
-https://derek111111.github.io/Sound-Wave/
-
-Note: Last FM does not provide track URL that can be embeded within the site, you need to add "Ignore X-Frame Headers" extension in your browser to play the song. We intend to use other Music APIs (Ex: Spotify) in phase 2 to overcome this limitation.
